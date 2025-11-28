@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='manifest' href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+     *{
+          margin:0;
+          padding:0;
+     }
+      button{
+     height: 80px;
+     width: 80px;
+     border-radius:50px;
+     border: none;
+     font-size: 2rem;
+     background-color: rgb(0, 0, 7);
+     color: rgb(240, 233, 233);
+
+     cursor: pointer;
+     font-family: fantasy;
+ }
+ #keys{
+     display: grid;
+  margin-top:55px;
+  grid-template-columns: repeat(4, 1fr);
+     gap: 5px;
+     
+       
+ }
+ #calculator{
+     font-family: Arial;
+     
+     margin:0;
+      width:100%;
+      background-color: rgb(0, 20, 24); 
+   
+
+       
+     
+    
+ }
+
+ #display{
+     padding: 20px;
+     font-size: 2rem;
+     font-family: fantasy;
+     border:none;
+     color: rgb(240, 233, 233);
+     background-color: rgb(0, 20, 24);
+     outline:none;
+     text-align: right;
+      
+      margin-top:25px;
+     width:100%;  
+ }
+     body{
+         background-color: rgb(0, 20, 24);
+     }
+
+  button:hover{
+      background-color: rgb(35, 43, 35);
+      color: rgb(255, 255, 255); 
+  }
+  button:active{     
+         color: cornsilk;
+  }
+  .btn{
+      background-color: darkgoldenrod;
+  }
+  .btn:hover{
+      background-color: rgb(187, 125, 1);
+  }
+  .bt{
+      background-color: rgb(42, 151, 42);
+  }
+  .bt:hover{
+     background-color: rgb(43, 97, 55);
+ }
+     .cont{
+          display:flex;
+          margin:10px;
+          align-items:center;
+          justify-content:center;
+     }
+     @media screen and (min-width:500px){
+          #calculator{
+               width:850px;
+               
+               
+              
+          }
+          #keys{
+     display: grid;
+  margin-top:55px;
+  grid-template-columns: repeat(10, 1fr);
+     gap: 5px;
+     
+       
+ }
+          body{
+               background:white;
+          }
+     }
+ 
+    </style>
+ 
+   </head>
+
+<body>
+    <div id="calculator">
+         <div class="cont">
+             <input id="display" readonly>>   
+         </div>   
+      
+
+        <div id="keys">
+            <button onclick="appendtodisplay('+')" class="btn">+</button>
+            <button onclick="appendtodisplay('7')">7</button>
+            <button onclick="appendtodisplay('8')">8</button>
+            <button onclick="appendtodisplay('9')">9</button>
+            <button onclick="appendtodisplay('-')" class="btn">-</button>
+            <button onclick="appendtodisplay('4')">4</button>
+            <button onclick="appendtodisplay('5')">5</button>
+            <button onclick="appendtodisplay('6')">6</button>
+            <button onclick="appendtodisplay('*')" class="btn">*</button>
+            <button onclick="appendtodisplay('1')">1</button>
+            <button onclick="appendtodisplay('2')">2</button>
+            <button onclick="appendtodisplay('3')">3</button>
+            <button onclick="appendtodisplay('/')" class="btn">/</button>
+            <button onclick="appendtodisplay('0')">0</button>
+            <button onclick="appendtodisplay('.')">.</button>
+           <button onclick="percent()">%</button>     
+            <button onclick="cleardisplay()" class="btn">x</button>
+            <button onclick="backspace()">c</button>
+            <button onclick="root()">√</button>
+           <button onclick="calculate()"class="bt">=</button>        
+        </div>
+    </div>
+</body>
+<script>
+    if('serviceWorker' in navigator){
+     navigator.serviceWorker.register('service-worker.js')
+    }
+   let error ="error"
+   
+    
+   let display= document.getElementById("display")
+   function appendtodisplay(input){
+   if(display.value ===error){display.value=" "}
+   display.value+=input ;
+   }
+   
+   function cleardisplay(){
+      display.value="";
+   }
+   function backspace(){
+     if(display.value===error){
+     display.value=" "
+   }else{
+      display.value=display.value.slice(0, -1)
+   }
+   
+}
+   function calculate(){
+     try{display.value
+         =eval(display.value)
+         
+      }catch {
+       display.value=error
+     } 
+      }
+   
+   function root(){
+    try{
+       
+     display.value=Math.sqrt(eval(display.value )).toFixed(6)
+     } catch {
+        display.value="error "
+     }
+   }
+   function percent(){
+      display.value=display.value/100;
+   }
+</script>
