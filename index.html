@@ -1,4 +1,4 @@
-
+{
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +36,7 @@
      
      margin:0;
       width:100%;
-      background-color: rgb(0, 20, 24); 
-   
-
-       
-     
-    
+      background-color: rgb(0, 20, 24);   
  }
 
  #display{
@@ -60,7 +55,13 @@
      body{
          background-color: rgb(0, 20, 24);
      }
-
+     .btn2{
+          background:rgb(150,0,5)
+     }
+     
+.btn2:hover{
+          background:rgb(150,50,50)
+     }
   button:hover{
       background-color: rgb(35, 43, 35);
       color: rgb(255, 255, 255); 
@@ -88,16 +89,24 @@
      }
      @media screen and (min-width:500px){
           #calculator{
-               width:850px;
-               
+               width:520px;
+               display:flex;
+               align-items:center;
+               justify-content:center;
+               flex-direction:column;
                
               
           }
+          body{
+               display:flex;
+               align-items:center;
+               justify-content:center;
+          }
           #keys{
      display: grid;
-  margin-top:55px;
-  grid-template-columns: repeat(10, 1fr);
-     gap: 5px;
+  margin-top:15px;
+  grid-template-columns: repeat(4, 1fr);
+     gap: 25px;
      
        
  }
@@ -134,7 +143,7 @@
             <button onclick="appendtodisplay('0')">0</button>
             <button onclick="appendtodisplay('.')">.</button>
            <button onclick="percent()">%</button>     
-            <button onclick="cleardisplay()" class="btn">x</button>
+            <button onclick="cleardisplay()" class="btn2">x</button>
             <button onclick="backspace()">c</button>
             <button onclick="root()">√</button>
            <button onclick="calculate()"class="bt">=</button>        
@@ -186,3 +195,5 @@
       display.value=display.value/100;
    }
 </script>
+       
+     
